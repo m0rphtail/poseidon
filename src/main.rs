@@ -1,5 +1,6 @@
 use clap::Parser;
 
+mod banner;
 mod check_programs;
 mod subdomain_enum;
 
@@ -8,21 +9,11 @@ mod subdomain_enum;
 struct Args {
     #[clap(short, long)]
     domain: String,
-    // #[clap(short, long)]
-    // project: String,
 }
 
 fn main() {
     let args = Args::parse();
-
+    banner::run();
     check_programs::run();
-    // setup_project(&args.project);
     subdomain_enum::run(&args.domain);
 }
-
-// fn setup_project(folder: &str) {
-//     Command::new("mkdir")
-//         .args(&["-p", folder])
-//         .spawn()
-//         .expect("unable crate project directory");
-// }

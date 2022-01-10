@@ -13,3 +13,5 @@ clap = { version = "*", features = ["derive"] }
 spinners = "*"
 regex = "*"
 itertools = "*"
+figlet-rs = "*"
+colored = "*"

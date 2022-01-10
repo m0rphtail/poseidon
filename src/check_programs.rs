@@ -1,3 +1,4 @@
+use colored::*;
 use std::env;
 use std::path::{Path, PathBuf};
 
@@ -21,12 +22,21 @@ where
 
 fn check(exe_name: &str) {
     match find_it(exe_name) {
-        Some(path) => println!("({:?}) {} already installed! ✔️", path, exe_name),
-        None => println!("{} not installed ❌", exe_name),
+        Some(_) => println!(
+            "✔️ {} {}",
+            "installed".green().bold(),
+            exe_name.green().bold()
+        ),
+        None => println!(
+            "❌ {} {}",
+            "not installed".red().bold(),
+            exe_name.red().bold()
+        ),
     }
 }
 
 pub fn run() {
+    println!("checking dependancies...");
     check("amass");
     check("massdns");
     check("masscan");

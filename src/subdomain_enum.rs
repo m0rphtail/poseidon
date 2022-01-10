@@ -7,9 +7,9 @@ use std::path::Path;
 use std::process::{Command, Stdio};
 
 pub fn run(domain: &str) {
-    // get_subdomains(domain);
-    // resolve_subdomains();
-    split_resolved();
+    get_subdomains(domain);
+    resolve_subdomains();
+    get_ip();
 }
 
 fn get_subdomains(domain: &str) {
@@ -21,10 +21,10 @@ fn get_subdomains(domain: &str) {
         .spawn()
         .unwrap();
 
-    let mut f = File::create("all_subdomains.poseidan").expect("unable to create file");
+    let mut f = File::create("all_subdomains.poseidon").expect("unable to create file");
     io::copy(&mut amass.stdout.unwrap(), &mut f).expect("unable to write file");
     sp.stop();
-    print!("");
+    // print!("");
 }
 
 fn resolve_subdomains() {
@@ -42,9 +42,9 @@ fn resolve_subdomains() {
             "A",
             "-o",
             "S",
-            "all_subdomains.poseidan",
+            "all_subdomains.poseidon",
             "-w",
-            "resolved_subdomains.poseidan",
+            "resolved_subdomains.poseidon",
         ])
         .spawn()
         .unwrap()
@@ -52,8 +52,8 @@ fn resolve_subdomains() {
         .expect("failed to run massdns");
 }
 
-fn split_resolved() {
-    let file = File::open("resolved_subdomains.poseidan").expect("unable to open file");
+fn get_ip() {
+    let file = File::open("resolved_subdomains.poseidon").expect("unable to open file");
     let file = BufReader::new(file);
     let mut data: Vec<String> = Vec::new();
     let mut ip_list: Vec<String> = Vec::new();
@@ -71,7 +71,7 @@ fn split_resolved() {
         }
     }
     let ip_list: Vec<_> = ip_list.into_iter().unique().collect();
-    let mut f = File::create("ip.poseidan").expect("Unable to create file");
+    let mut f = File::create("ip.poseidon").expect("Unable to create file");
     for i in ip_list {
         writeln!(f, "{}", i).unwrap();
     }
