@@ -8,13 +8,21 @@ mod subdomain_enum;
 struct Args {
     #[clap(short, long)]
     domain: String,
-    #[clap(short, long)]
-    output: String,
+    // #[clap(short, long)]
+    // project: String,
 }
 
 fn main() {
     let args = Args::parse();
 
     check_programs::run();
-    subdomain_enum::run(&args.domain, &args.output);
+    // setup_project(&args.project);
+    subdomain_enum::run(&args.domain);
 }
+
+// fn setup_project(folder: &str) {
+//     Command::new("mkdir")
+//         .args(&["-p", folder])
+//         .spawn()
+//         .expect("unable crate project directory");
+// }

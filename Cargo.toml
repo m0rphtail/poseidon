@@ -11,3 +11,5 @@ description = "Automated Domain Reconnaissance Tool"
 [dependencies]
 clap = { version = "*", features = ["derive"] }
 spinners = "*"
+regex = "*"
+itertools = "*"
