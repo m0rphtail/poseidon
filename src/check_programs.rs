@@ -23,8 +23,7 @@ where
 fn check(exe_name: &str) {
     match find_it(exe_name) {
         Some(_) => println!(
-            "✔️ {} {}",
-            "installed".green().bold(),
+            "✔️ {}",
             exe_name.green().bold()
         ),
         None => println!(

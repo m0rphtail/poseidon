@@ -2,6 +2,7 @@ use clap::Parser;
 
 mod banner;
 mod check_programs;
+mod port_enum;
 mod subdomain_enum;
 
 #[derive(Parser, Debug)]
@@ -16,4 +17,5 @@ fn main() {
     banner::run();
     check_programs::run();
     subdomain_enum::run(&args.domain);
+    port_enum::run();
 }

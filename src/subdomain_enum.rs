@@ -75,4 +75,6 @@ fn get_ip() {
     for i in ip_list {
         writeln!(f, "{}", i).unwrap();
     }
+
+    println!("Created list of valid ip addresses")
 }
